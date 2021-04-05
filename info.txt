@@ -1,0 +1,40 @@
+inode.c
+
+1. myfs_iget -> get inode function
+2. myfs dentry_lookup-> look for dentry in dir
+3. myfs new inode-> create new inode in dir
+4. myfs create file-> create a file in directory
+5. myfs ulink-> remove link of file from directory
+6. myfs_mkdir
+7. myfs_rmdir
+8. myfs_link
+9. myfs_symlink
+10. myfs_getlink
+
+	Subfunctions:
+	-> search for inode in directory and get the subfiles
+	-> mark inode dirty
+	-> update inode stats
+	-> remove file from parent directory
+
+file.c
+
+1. myfs_file_get_block -> map block of the file inode on the disk.
+2. myfs_readpage -> reads pages from disk
+3. myfs_writepage -> writes page in memory
+4. myfs_writebegin -> allocates necessary blocks
+		   -> called before write
+5. myfs_writeend -> updates necessary inode metadeta
+		 -> called after write function
+
+super.c
+
+1. myfs_inode_cache -> creates inode cache using kmem_cache
+2. myfs_destroy_inode_cache-> destroys cache
+3. myfs_destroy_inode -> frees inode from cache
+4. myfs_write_inode -> writes indoe, updates inode info in disk
+5. myfs_put_super
+6. myfs_sync_fs
+7. myfs_statfs -> givs stats about superblock
+
+
