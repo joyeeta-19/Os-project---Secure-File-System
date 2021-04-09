@@ -1,15 +1,12 @@
 obj-m += myfs.o
-simplefs-objs := main.o super.o inode.o file.o 
+myfs-objs := super.o inode.o file.o dir.o extent.o
 
 KDIR ?= /lib/modules/$(shell uname -r)/build
 
-MKFS = mkfs.simplefs
+MKFS = mkfs.myfs
 
 all: $(MKFS)
 	make -C $(KDIR) M=$(PWD) modules
-
-IMAGE ?= test.img
-IMAGESIZE ?= 50
 
 $(MKFS): mkfs.c
 	$(CC) -std=gnu99 -Wall -o $@ $<
